@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightBlue"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="28dp"
+        android:contentDescription="@string/tic_tac_toe"
+        android:text="@string/tic_tac_toe_caps"
+        android:textAlignment="viewStart"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- https://www.thegamegal.com/2018/09/01/ultimate-tic-tac-toe/ -->
+    <ImageView
+        android:layout_width="345dp"
+        android:layout_height="345dp"
+        android:contentDescription="@string/tic_tac_toe_grid"
+        android:src="@drawable/tic_tac_toe_grid"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <GridLayout
+        android:id="@+id/tic_tac_toe_grid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:columnCount="3"
+        android:rowCount="3"
+        android:useDefaultMargins="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/topLeftSquare"
+            style="@style/TicTacToeButtonPortrait" />
+
+
+        <Button
+            android:id="@+id/topMiddleSquare"
+            style="@style/TicTacToeButtonPortrait" />
+
+        <Button style="@style/TicTacToeButtonPortrait" />
+
+        <Button
+            android:id="@+id/middleLeftSquare"
+            style="@style/TicTacToeButtonPortrait" />
+
+        <Button style="@style/TicTacToeButtonPortrait" />
+
+        <Button style="@style/TicTacToeButtonPortrait" />
+
+        <Button
+            android:id="@+id/bottomLeftSquare"
+            style="@style/TicTacToeButtonPortrait" />
+
+        <Button style="@style/TicTacToeButtonPortrait" />
+
+        <Button style="@style/TicTacToeButtonPortrait" />
+
+
+    </GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
