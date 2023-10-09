@@ -11,11 +11,13 @@
         android:id="@+id/player_2_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="31dp"
         android:text="@string/player_2_o"
         android:textSize="24sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="22dp"
-        tools:layout_editor_absoluteY="107dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_1_label" />
 
     <TextView
         android:id="@+id/tic_tac_toe_textView"
@@ -90,20 +92,24 @@
         android:id="@+id/player_1_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="44dp"
         android:text="@string/player_1_x"
         android:textSize="24sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="22dp"
-        tools:layout_editor_absoluteY="44dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/current_player_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="45dp"
         android:text="%d's TURN"
         android:textSize="20sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="589dp"
-        tools:layout_editor_absoluteY="55dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
