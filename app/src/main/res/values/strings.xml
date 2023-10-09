@@ -6,5 +6,11 @@
     <string name="new_game">NEW GAME</string>
     <string name="game_over">GAME OVER!</string>
     <string name="player_1">Player 1:</string>
-    <string name="player_2">Player 2</string>
+    <string name="player_2">Player 2:</string>
+    <string name="_0">0</string>
+    <string name="player_1_win">PLAYER 1 WINS!</string>
+    <string name="player_2_win">PLAYER 2 WINS!</string>
+    <string name="tie">YOU TIED!</string>
+    <string name="player_2_o">Player 2: o</string>
+    <string name="player_1_x">Player 1: x</string>
 </resources>
