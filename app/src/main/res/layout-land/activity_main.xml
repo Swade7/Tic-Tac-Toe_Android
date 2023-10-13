@@ -61,40 +61,30 @@
 
         <Button
             android:id="@+id/topLeftSquare"
-            style="@style/TicTacToeButtonLand"
-            android:text="@string/x" />
+            style="@style/TicTacToeButtonLand" />
 
 
         <Button
             android:id="@+id/topMiddleSquare"
-            style="@style/TicTacToeButtonLand"
-            android:text="@string/none"/>
+            style="@style/TicTacToeButtonLand" />
 
-        <Button style="@style/TicTacToeButtonLand"
-            android:text="@string/none"/>
+        <Button style="@style/TicTacToeButtonLand" />
 
         <Button
             android:id="@+id/middleLeftSquare"
-            style="@style/TicTacToeButtonLand"
-            android:text="@string/none"/>
+            style="@style/TicTacToeButtonLand" />
 
-        <Button style="@style/TicTacToeButtonLand"
-            android:text="@string/o"/>
+        <Button style="@style/TicTacToeButtonLand" />
 
-        <Button style="@style/TicTacToeButtonLand"
-            android:text="@string/o"/>
+        <Button style="@style/TicTacToeButtonLand" />
 
         <Button
             android:id="@+id/bottomLeftSquare"
-            style="@style/TicTacToeButtonLand"
-            android:text="@string/none"/>
+            style="@style/TicTacToeButtonLand" />
 
-        <Button style="@style/TicTacToeButtonLand"
-            android:text="@string/none"/>
+        <Button style="@style/TicTacToeButtonLand" />
 
-        <Button style="@style/TicTacToeButtonLand"
-            android:text="@string/none"/>
-
+        <Button style="@style/TicTacToeButtonLand" />
 
     </GridLayout>
 

@@ -89,40 +89,29 @@
 
         <Button
             android:id="@+id/topLeftSquare"
-            style="@style/TicTacToeButtonPortrait"
-            android:text="@string/x" />
-
+            style="@style/TicTacToeButtonPortrait" />
 
         <Button
             android:id="@+id/topMiddleSquare"
-            style="@style/TicTacToeButtonPortrait"
-            android:text="@string/none"/>
+            style="@style/TicTacToeButtonPortrait" />
 
-        <Button style="@style/TicTacToeButtonPortrait"
-            android:text="@string/none"/>
+        <Button style="@style/TicTacToeButtonPortrait" />
 
         <Button
             android:id="@+id/middleLeftSquare"
-            style="@style/TicTacToeButtonPortrait"
-            android:text="@string/none"/>
+            style="@style/TicTacToeButtonPortrait" />
 
-        <Button style="@style/TicTacToeButtonPortrait"
-            android:text="@string/o"/>
+        <Button style="@style/TicTacToeButtonPortrait" />
 
-        <Button style="@style/TicTacToeButtonPortrait"
-            android:text="@string/none"/>
+        <Button style="@style/TicTacToeButtonPortrait" />
 
         <Button
             android:id="@+id/bottomLeftSquare"
-            style="@style/TicTacToeButtonPortrait"
-            android:text="@string/none"/>
+            style="@style/TicTacToeButtonPortrait" />
 
-        <Button style="@style/TicTacToeButtonPortrait"
-            android:text="@string/none"/>
+        <Button style="@style/TicTacToeButtonPortrait" />
 
-        <Button style="@style/TicTacToeButtonPortrait"
-            android:text="@string/none"/>
-
+        <Button style="@style/TicTacToeButtonPortrait" />
 
     </GridLayout>
 
