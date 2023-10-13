@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putBooleanArray(GAME_STATE, game.state)
+        outState.putString(GAME_STATE, game.state)
     }
 
 }
