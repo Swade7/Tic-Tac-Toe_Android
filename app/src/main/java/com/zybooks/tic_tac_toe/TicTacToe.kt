@@ -5,7 +5,7 @@ import kotlin.random.Random
 
 const val GRID_SIZE = 3
 
-enum class BoardValue {
+enum class Player {
     X,
     O,
     None
@@ -20,8 +20,8 @@ enum class GameState {
 
 data class Location(val row: Int, val col: Int)
 class TicTacToe {
-    private var currentPlayer = BoardValue.X
-    private val board = Array(GRID_SIZE) { Array(GRID_SIZE) { BoardValue.None } }
+    private var currentPlayer = Player.X
+    private val board = Array(GRID_SIZE) { Array(GRID_SIZE) { Player.None } }
 
     // Store the locations of the possible locations that would result in a win
     // ChatGPT - "How would I store a collection of winning tic tac toe values in Kotlin?"
@@ -49,9 +49,9 @@ class TicTacToe {
                 for (col in 0 until GRID_SIZE) {
 
                     when (board[row][col]) {
-                        BoardValue.X -> boardString.append('X')
-                        BoardValue.O -> boardString.append('O')
-                        BoardValue.None -> boardString.append('N')
+                        Player.X -> boardString.append('X')
+                        Player.O -> boardString.append('O')
+                        Player.None -> boardString.append('N')
                     }
                 }
             }
@@ -62,9 +62,9 @@ class TicTacToe {
             for (row in 0 until GRID_SIZE) {
                 for (col in 0 until GRID_SIZE) {
                     when (value[index]) {
-                        'X' -> board[row][col] = BoardValue.X
-                        'O' -> board[row][col] = BoardValue.O
-                        else -> board[row][col] = BoardValue.None
+                        'X' -> board[row][col] = Player.X
+                        'O' -> board[row][col] = Player.O
+                        else -> board[row][col] = Player.None
                     }
                     index++
                 }
@@ -75,16 +75,17 @@ class TicTacToe {
     fun newGame() {
         for (row in 0 until GRID_SIZE) {
             for (col in 0 until GRID_SIZE) {
-                board[row][col] = BoardValue.None
+                board[row][col] = Player.None
             }
         }
     }
 
     // Check if the square is empty when trying to make a move
     fun checkValidMove(row: Int, col: Int): Boolean {
-        if (board[row][col] == BoardValue.None) {
+        if (board[row][col] == Player.None) {
             return true
         }
+
         return false
     }
 
@@ -96,33 +97,68 @@ class TicTacToe {
     }
 
     // Getters
-    fun getPlaceValue(row: Int, col: Int): BoardValue {
+    fun getPlaceValue(row: Int, col: Int): Player {
         return board[row][col]
     }
 
-    fun getCurrentPlayer(): BoardValue {
+    fun getCurrentPlayer(): Player {
         return currentPlayer
     }
 
     // Setters
     private fun changeTurn() {
-        if (currentPlayer == BoardValue.X) {
-            currentPlayer = BoardValue.O
+        if (currentPlayer == Player.X) {
+            currentPlayer = Player.O
         }
-        currentPlayer = BoardValue.X
+        currentPlayer = Player.X
     }
 
     private fun setPlaceValue(row: Int, col: Int) {
         board[row][col] = currentPlayer
     }
 
-    /*
-    fun isGameOver(): GameState {
-        // Check if player 1 won
-        if (board[0][0] == BoardValue.X && board[0][1] == BoardValue.X && board[0][2] == BoardValue.X)
+
+    fun getGameStatus(): GameState {
+        // Check for tie
+        if (isStalemate()) {
+            return GameState.Tie
+        }
+
+        // Loop through the possible winning combinations and check if either player has won
+        for (combination in winningLocations) {
+            val winner = checkForWinner(combination)
+            if (winner != Player.None) {
+                return when(winner) {
+                    Player.X -> GameState.Player1Win
+                    else -> GameState.Player2Win
+                }
+            }
+        }
+
+        return GameState.NotOver
     }
 
-     */
+   private fun isStalemate(): Boolean {
+       for (row in 0 until GRID_SIZE) {
+           for (col in 0 until GRID_SIZE) {
+                if(board[row][col] == Player.None) {
+                    return false
+                }
+           }
+       }
 
+       return true
+   }
 
+    // Returns the winning player if present at given combination, else Player.None
+    private fun checkForWinner(combination: List<Location>): Player {
+        val player = board[combination[0].row][combination[0].col]
+        for (location in combination) {
+            if (board[location.row][location.col] != player) {
+                return Player.None
+            }
+        }
+
+        return player
+    }
 }
