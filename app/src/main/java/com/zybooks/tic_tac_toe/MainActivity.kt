@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.GridLayout
 import androidx.core.view.children
 
+const val GAME_STATE = "gameState"
+
 class MainActivity : AppCompatActivity() {
     private lateinit var game: TicTacToe
     private lateinit var ticTacToeGridLayout: GridLayout
@@ -39,6 +41,11 @@ class MainActivity : AppCompatActivity() {
 
 
         // TODO: Launch the game_over Activity if the game is over
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBooleanArray(GAME_STATE, game.state)
     }
 
 }

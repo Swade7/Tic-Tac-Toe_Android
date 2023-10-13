@@ -28,6 +28,37 @@ class TicTacToe {
 
     //}
 
+    var state: String
+        get() {
+            val boardString = StringBuilder()
+
+            var index = 0
+            for (row in 0 until GRID_SIZE) {
+                for (col in 0 until GRID_SIZE) {
+
+                    when (board[row][col]) {
+                        BoardValue.X -> boardString.append('X')
+                        BoardValue.O -> boardString.append('O')
+                        BoardValue.None -> boardString.append('N')
+                    }
+                }
+            }
+            return boardString.toString()
+        }
+        set(value) {
+            var index = 0
+            for (row in 0 until GRID_SIZE) {
+                for (col in 0 until GRID_SIZE) {
+                    when (value[index]) {
+                        'X' -> board[row][col] = BoardValue.X
+                        'O' -> board[row][col] = BoardValue.O
+                        else -> board[row][col] = BoardValue.None
+                    }
+                    index++
+                }
+            }
+        }
+
     // Reset the board
     fun newGame() {
         for (row in 0 until GRID_SIZE) {
