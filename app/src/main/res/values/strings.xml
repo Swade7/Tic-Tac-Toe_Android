@@ -13,4 +13,7 @@
     <string name="tie">YOU TIED!</string>
     <string name="player_2_o">Player 2: o</string>
     <string name="player_1_x">Player 1: x</string>
+    <string name="x">X</string>
+    <string name="o">O</string>
+    <string name="none"> </string>
 </resources>
