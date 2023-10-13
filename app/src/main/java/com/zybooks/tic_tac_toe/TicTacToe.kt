@@ -1,5 +1,6 @@
 package com.zybooks.tic_tac_toe
 
+import android.view.View
 import kotlin.random.Random
 
 const val GRID_SIZE = 3
@@ -23,9 +24,9 @@ class TicTacToe {
     private val board = Array(GRID_SIZE) { Array(GRID_SIZE) { BoardValue.None } }
 
     // Store the locations of the possible locations that would result in a win
-    private val winningLocations = Array() { Array()} {
+    //private val winningLocations = Array() { Array()} {
 
-    }
+    //}
 
     // Reset the board
     fun newGame() {
@@ -37,7 +38,7 @@ class TicTacToe {
     }
 
     // Check if the square is empty when trying to make a move
-    private fun checkValidMove(row: Int, col: Int): Boolean {
+    fun checkValidMove(row: Int, col: Int): Boolean {
         if (board[row][col] == BoardValue.None) {
             return true
         }
@@ -47,10 +48,8 @@ class TicTacToe {
 
     // Set the selected place to the correct user's piece and change the turn
     fun makeMove(row: Int, col: Int) {
-        if (checkValidMove(row, col)) {
-            setPlaceValue(row, col)
-            changeTurn()
-        }
+        setPlaceValue(row, col)
+        changeTurn()
     }
 
     // Getters
@@ -74,9 +73,13 @@ class TicTacToe {
         board[row][col] = currentPlayer
     }
 
+    /*
     fun isGameOver(): GameState {
         // Check if player 1 won
         if (board[0][0] == BoardValue.X && board[0][1] == BoardValue.X && board[0][2] == BoardValue.X)
     }
+
+     */
+
 
 }

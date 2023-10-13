@@ -2,6 +2,7 @@ package com.zybooks.tic_tac_toe
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.GridLayout
 import androidx.core.view.children
 
@@ -22,8 +23,22 @@ class MainActivity : AppCompatActivity() {
         for (gridButton in ticTacToeGridLayout.children) {
             gridButton.setOnClickListener(this::onBoardClick)
 
-            game = TicTacToe()
+
         }
+        game = TicTacToe()
+    }
+
+    private fun onBoardClick(view: View) {
+        val buttonIndex = ticTacToeGridLayout.indexOfChild(view)
+        val row = buttonIndex / GRID_SIZE
+        val col = buttonIndex % GRID_SIZE
+
+        if (game.checkValidMove(row, col)) {
+            game.makeMove(row, col)
+        }
+
+
+        // TODO: Launch the game_over Activity if the game is over
     }
 
 }
