@@ -24,9 +24,21 @@ class TicTacToe {
     private val board = Array(GRID_SIZE) { Array(GRID_SIZE) { BoardValue.None } }
 
     // Store the locations of the possible locations that would result in a win
-    //private val winningLocations = Array() { Array()} {
+    // ChatGPT - "How would I store a collection of winning tic tac toe values in Kotlin?"
+    private val winningLocations: List<List<Location>> = listOf(
+        listOf(Location(0, 0), Location(0, 1), Location(0, 2)),
+        listOf(Location(1, 0), Location(1, 1), Location(1, 2)),
+        listOf(Location(2, 0), Location(2, 1), Location(2, 2)),
 
-    //}
+        // Vertical combinations
+        listOf(Location(0, 0), Location(1, 0), Location(2, 0)),
+        listOf(Location(0, 1), Location(1, 1), Location(2, 1)),
+        listOf(Location(0, 2), Location(1, 2), Location(2, 2)),
+
+        // Diagonal combinations
+        listOf(Location(0, 0), Location(1, 1), Location(2, 2)),
+        listOf(Location(0, 2), Location(1, 1), Location(2, 0))
+    )
 
     var state: String
         get() {
