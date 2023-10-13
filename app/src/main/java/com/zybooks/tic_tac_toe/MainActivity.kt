@@ -78,12 +78,12 @@ class MainActivity : AppCompatActivity() {
             // to change the text and text color without using FindViewById
             if (gridButton is Button) {
                 when (game.getPlaceValue(row, col)) {
-                    BoardValue.X -> {
+                    Player.X -> {
                         // Set the text and color
                         gridButton.setText(R.string.x)
                         gridButton.setTextColor(xColor)
                     }
-                    BoardValue.O -> {
+                    Player.O -> {
                         gridButton.setText(R.string.o)
                         gridButton.setTextColor(oColor)
                     }
