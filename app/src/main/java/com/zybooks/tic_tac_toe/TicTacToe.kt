@@ -12,10 +12,10 @@ enum class Player {
 }
 
 enum class GameState {
+    NotOver,
     Player1Win,
     Player2Win,
-    Tie,
-    NotOver
+    Tie
 }
 
 data class Location(val row: Int, val col: Int)

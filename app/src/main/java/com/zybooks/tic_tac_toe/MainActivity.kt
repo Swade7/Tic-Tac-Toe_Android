@@ -1,35 +1,46 @@
 package com.zybooks.tic_tac_toe
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.GridLayout
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 
 const val GAME_STATE = "gameState"
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var game: TicTacToe
+    //private lateinit var game: TicTacToe
     private lateinit var ticTacToeGridLayout: GridLayout
     private var player1Wins = 0
     private var player2Wins = 0
     private var xColor = 0
     private var oColor = 0
     private var noneColor = 0
-
+    var game = TicTacToe()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        ticTacToeGridLayout = findViewById(R.id.tic_tac_toe_grid)
         if (savedInstanceState == null) {
             startGame()
+
         } else {
             game.state = savedInstanceState.getStringArray(GAME_STATE).toString()!!
             setButtonValues()
+
+            player1Wins = savedInstanceState.getInt("player1Wins", 0)
+            player2Wins = savedInstanceState.getInt("player2Wins", 0)
+
         }
+
+
 
         ticTacToeGridLayout = findViewById(R.id.tic_tac_toe_grid)
 
@@ -43,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         oColor = ContextCompat.getColor(this, R.color.blue)
         noneColor - ContextCompat.getColor(this, R.color.clear)
 
-        game = TicTacToe()
+
     }
 
     private fun startGame() {
@@ -62,6 +73,24 @@ class MainActivity : AppCompatActivity() {
 
 
         // TODO: Launch the game_over Activity if the game is over
+        val gameStatus = game.getGameStatus()
+        if (gameStatus != GameState.NotOver) {
+            when(gameStatus) {
+                GameState.Player1Win -> player1Wins++
+                GameState.Player2Win -> player2Wins++
+                else -> return
+            }
+
+            // Create an Intent to send data to the game_over activity
+            val intent = Intent(this, GameOver::class.java)
+            intent.putExtra("player1Wins", player1Wins)
+            intent.putExtra("player2Wins", player2Wins)
+            intent.putExtra("gameResult", gameStatus)
+
+            startActivity(intent)
+
+
+        }
     }
 
     private fun setButtonValues() {

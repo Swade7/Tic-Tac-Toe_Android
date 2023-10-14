@@ -11,6 +11,7 @@
     <string name="player_1_win">PLAYER 1 WINS!</string>
     <string name="player_2_win">PLAYER 2 WINS!</string>
     <string name="tie">YOU TIED!</string>
+    <string name="error">An error has occurred.</string>
     <string name="player_2_o">Player 2: o</string>
     <string name="player_1_x">Player 1: x</string>
     <string name="x">X</string>
