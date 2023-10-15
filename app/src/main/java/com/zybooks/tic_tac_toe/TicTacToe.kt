@@ -108,14 +108,16 @@ class TicTacToe {
     }
 
     // Setters
-    private fun changeTurn() {
-        if (currentPlayer == Player.X) {
-            currentPlayer = Player.O
-        }
-        else {
-            currentPlayer = Player.X
-        }
 
+    fun setCurrentPlayer(player: Player) {
+        currentPlayer = player
+    }
+    private fun changeTurn() {
+        currentPlayer = if (currentPlayer == Player.X) {
+            Player.O
+        } else {
+            Player.X
+        }
     }
 
     private fun setPlaceValue(row: Int, col: Int) {

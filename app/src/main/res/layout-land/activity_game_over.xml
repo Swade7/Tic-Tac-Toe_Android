@@ -89,6 +89,7 @@
         android:layout_marginBottom="51dp"
         android:text="@string/new_game"
         android:textSize="34sp"
+        android:onClick="newGameBtnClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

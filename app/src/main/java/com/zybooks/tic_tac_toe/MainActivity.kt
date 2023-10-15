@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        currentPlayerTextView = findViewById(R.id.current_player_textview)
         ticTacToeGridLayout = findViewById(R.id.tic_tac_toe_grid)
         if (savedInstanceState == null) {
             startGame()
@@ -36,15 +37,11 @@ class MainActivity : AppCompatActivity() {
             game.state = savedInstanceState.getStringArray(GAME_STATE).toString()!!
             setButtonValues()
 
-            // Get the saved number of wins for each player
+            // Get the saved number of wins for each player and the current player
             player1Wins = savedInstanceState.getInt("player1Wins", 0)
             player2Wins = savedInstanceState.getInt("player2Wins", 0)
+            game.setCurrentPlayer(intToPlayer(savedInstanceState.getInt("currentPlayer", 1)))
         }
-
-        ticTacToeGridLayout = findViewById(R.id.tic_tac_toe_grid)
-        currentPlayerTextView = findViewById(R.id.current_player_textview)
-
-        currentPlayerTextView.setText(R.string.player_1)
 
         // Add the same click handler to all grid buttons
         for (gridButton in ticTacToeGridLayout.children) {
@@ -64,11 +61,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showCurrentPlayer() {
-        if (game.getCurrentPlayer() == Player.X) {
-            //currentPlayerTextView.setText(R.string.player_1)
+        if (game.getCurrentPlayer() == Player.O) {
+            currentPlayerTextView.setText(R.string.player_2)
         }
         else {
-            currentPlayerTextView.setText(R.string.player_2)
+            currentPlayerTextView.setText(R.string.player_1)
         }
     }
 
@@ -82,6 +79,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun playerToInt(player: Player): Int {
+        return when(player) {
+            Player.None -> 0
+            Player.X -> 1
+            Player.O -> 2
+        }
+    }
+
+    private fun intToPlayer(num: Int) : Player {
+        return when(num) {
+            0 -> Player.None
+            1 -> Player.X
+            else -> Player.O
+        }
+    }
     private fun onBoardClick(view: View) {
         // Get the location of the click
         val buttonIndex = ticTacToeGridLayout.indexOfChild(view)
@@ -90,10 +102,10 @@ class MainActivity : AppCompatActivity() {
 
         if (game.checkValidMove(row, col)) {
             game.makeMove(row, col)
-            showCurrentPlayer()
         }
 
         setButtonValues()
+        showCurrentPlayer()
 
         // Launch the game_over Activity if the game is over
         val gameStatus = game.getGameStatus()
@@ -104,12 +116,14 @@ class MainActivity : AppCompatActivity() {
                 else -> {}
             }
 
-            // Create an Intent to send data to the game_over activity
+            // Create an Intent to send data to the game_over activity and save the current state
             val intent = Intent(this, GameOver::class.java)
             val gameStateInt = gameStateToInt(gameStatus)
+            val playerInt = playerToInt(game.getCurrentPlayer())
             intent.putExtra("player1Wins", player1Wins)
             intent.putExtra("player2Wins", player2Wins)
             intent.putExtra("gameResult", gameStateInt)
+            intent.putExtra("currentPlayer", playerInt)
 
             resultLauncher.launch(intent)
         }
@@ -161,4 +175,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun newGame(view: View) {
+        startGame()
+    }
 }
