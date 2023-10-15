@@ -13,22 +13,29 @@ class GameOver : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_over)
+        gameResultTextView = findViewById(R.id.game_result)
+        player1winsTextView = findViewById(R.id.player_1_score)
+        player2winsTextView = findViewById(R.id.player_2_score)
+
 
         val player1Wins = intent.getStringExtra("player1Wins")
+        player1winsTextView.text = player1Wins
         val player2Wins = intent.getStringExtra("player2Wins")
+        player2winsTextView.text = player2Wins.toString()
+
+
         val gameResult = intent.getIntExtra("gameResult", 0)
         // get the game result
         when(gameResult) {
-            0 -> R.string.error
-            1 -> R.string.player_1_win
-            2 -> R.string.player_2_win
-            3 -> R.string.tie
+            0 -> gameResultTextView.setText(R.string.error)
+            1 -> gameResultTextView.setText(R.string.player_1_win)
+            2 -> gameResultTextView.setText(R.string.player_1_win)
+            3 -> gameResultTextView.setText(R.string.tie)
         }
+    }
 
-        // Might need to send some data saying to start a new game
-        fun newGameBtnClick(view: View) {
-            setResult(RESULT_OK)
-            finish()
-        }
+    fun newGameBtnClick(view: View) {
+        setResult(RESULT_OK)
+        finish()
     }
 }

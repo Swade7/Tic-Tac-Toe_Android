@@ -27,6 +27,7 @@
         android:layout_marginBottom="80dp"
         android:text="@string/new_game"
         android:textSize="48sp"
+        android:onClick="newGameBtnClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
@@ -67,28 +68,28 @@
         app:layout_constraintTop_toBottomOf="@+id/GameOverTextView" />
 
     <EditText
-        android:id="@+id/Player_1_Score"
+        android:id="@+id/player_1_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="7dp"
         android:ems="2"
         android:inputType="number"
-        android:text="0"
+        android:text="%d"
         android:textAlignment="center"
         android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Player_1_TextView" />
 
     <EditText
-        android:id="@+id/player_2_Score"
+        android:id="@+id/player_2_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="64dp"
         android:ems="2"
         android:inputType="number"
-        android:text="0"
+        android:text="%d"
         android:textAlignment="center"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"

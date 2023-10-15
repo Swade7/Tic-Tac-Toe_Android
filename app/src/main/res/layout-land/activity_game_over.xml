@@ -57,7 +57,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/Player_1_Score"
+        android:id="@+id/player_1_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="107dp"
@@ -70,7 +70,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Player_1_TextView" />
 
     <TextView
-        android:id="@+id/player_2_Score"
+        android:id="@+id/player_2_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"

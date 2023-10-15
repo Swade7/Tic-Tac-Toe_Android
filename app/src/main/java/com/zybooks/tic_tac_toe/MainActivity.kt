@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     private var xColor = 0
     private var oColor = 0
     private var noneColor = 0
-    var game = TicTacToe()
+    private var game = TicTacToe()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
