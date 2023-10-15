@@ -18,12 +18,14 @@ class GameOver : AppCompatActivity() {
         player2winsTextView = findViewById(R.id.player_2_score)
 
 
+        // Show the number of wins for each player
         val player1Wins = intent.getIntExtra("player1Wins", 0)
         player1winsTextView.text = player1Wins.toString()
         val player2Wins = intent.getIntExtra("player2Wins", 0)
         player2winsTextView.text = player2Wins.toString()
 
 
+        // Get the result of the game from MainActivity
         val gameResult = intent.getIntExtra("gameResult", 0)
         // get the game result
         when(gameResult) {

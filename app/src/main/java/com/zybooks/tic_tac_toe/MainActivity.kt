@@ -36,9 +36,9 @@ class MainActivity : AppCompatActivity() {
             game.state = savedInstanceState.getStringArray(GAME_STATE).toString()!!
             setButtonValues()
 
+            // Get the saved number of wins for each player
             player1Wins = savedInstanceState.getInt("player1Wins", 0)
             player2Wins = savedInstanceState.getInt("player2Wins", 0)
-
         }
 
         ticTacToeGridLayout = findViewById(R.id.tic_tac_toe_grid)
@@ -54,9 +54,9 @@ class MainActivity : AppCompatActivity() {
         xColor = ContextCompat.getColor(this, R.color.red)
         oColor = ContextCompat.getColor(this, R.color.blue)
         noneColor - ContextCompat.getColor(this, R.color.clear)
-
     }
 
+    // Start/reset the game
     private fun startGame() {
         game.newGame()
         setButtonValues()
@@ -72,6 +72,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Returns an Int value for the game's state
     private fun gameStateToInt(gameState: GameState): Int {
         return when (gameState) {
             GameState.NotOver -> 0
@@ -82,6 +83,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onBoardClick(view: View) {
+        // Get the location of the click
         val buttonIndex = ticTacToeGridLayout.indexOfChild(view)
         val row = buttonIndex / GRID_SIZE
         val col = buttonIndex % GRID_SIZE
@@ -93,13 +95,13 @@ class MainActivity : AppCompatActivity() {
 
         setButtonValues()
 
-        // TODO: Launch the game_over Activity if the game is over
+        // Launch the game_over Activity if the game is over
         val gameStatus = game.getGameStatus()
         if (gameStatus != GameState.NotOver) {
             when(gameStatus) {
                 GameState.Player1Win -> player1Wins++
                 GameState.Player2Win -> player2Wins++
-                else -> return
+                else -> {}
             }
 
             // Create an Intent to send data to the game_over activity
@@ -151,6 +153,7 @@ class MainActivity : AppCompatActivity() {
         outState.putString(GAME_STATE, game.state)
     }
 
+    // Restart the game if the NEW GAME button is clicked in GameOver
     private val resultLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
