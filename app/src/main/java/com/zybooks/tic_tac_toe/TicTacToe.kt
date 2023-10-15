@@ -78,6 +78,8 @@ class TicTacToe {
                 board[row][col] = Player.None
             }
         }
+
+        currentPlayer = Player.X
     }
 
     // Check if the square is empty when trying to make a move

@@ -18,9 +18,9 @@ class GameOver : AppCompatActivity() {
         player2winsTextView = findViewById(R.id.player_2_score)
 
 
-        val player1Wins = intent.getStringExtra("player1Wins")
-        player1winsTextView.text = player1Wins
-        val player2Wins = intent.getStringExtra("player2Wins")
+        val player1Wins = intent.getIntExtra("player1Wins", 0)
+        player1winsTextView.text = player1Wins.toString()
+        val player2Wins = intent.getIntExtra("player2Wins", 0)
         player2winsTextView.text = player2Wins.toString()
 
 

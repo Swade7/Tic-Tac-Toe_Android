@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.GridLayout
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
@@ -14,8 +15,8 @@ import androidx.core.view.children
 const val GAME_STATE = "gameState"
 
 class MainActivity : AppCompatActivity() {
-    //private lateinit var game: TicTacToe
     private lateinit var ticTacToeGridLayout: GridLayout
+    private lateinit var currentPlayerTextView: TextView
     private var player1Wins = 0
     private var player2Wins = 0
     private var xColor = 0
@@ -40,15 +41,15 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-
-
         ticTacToeGridLayout = findViewById(R.id.tic_tac_toe_grid)
+        currentPlayerTextView = findViewById(R.id.current_player_textview)
+
+        currentPlayerTextView.setText(R.string.player_1)
 
         // Add the same click handler to all grid buttons
         for (gridButton in ticTacToeGridLayout.children) {
             gridButton.setOnClickListener(this::onBoardClick)
         }
-
 
         xColor = ContextCompat.getColor(this, R.color.red)
         oColor = ContextCompat.getColor(this, R.color.blue)
@@ -60,6 +61,25 @@ class MainActivity : AppCompatActivity() {
     private fun startGame() {
         game.newGame()
         setButtonValues()
+        showCurrentPlayer()
+    }
+
+    private fun showCurrentPlayer() {
+        if (game.getCurrentPlayer() == Player.X) {
+            //currentPlayerTextView.setText(R.string.player_1)
+        }
+        else {
+            currentPlayerTextView.setText(R.string.player_2)
+        }
+    }
+
+    private fun GameStateToInt(gameState: GameState): Int {
+        return when (gameState) {
+            GameState.NotOver -> 0
+            GameState.Player1Win -> 1
+            GameState.Player2Win -> 2
+            GameState.Tie -> 3
+        }
     }
 
     private fun onBoardClick(view: View) {
@@ -69,6 +89,7 @@ class MainActivity : AppCompatActivity() {
 
         if (game.checkValidMove(row, col)) {
             game.makeMove(row, col)
+            showCurrentPlayer()
         }
 
 
@@ -83,9 +104,10 @@ class MainActivity : AppCompatActivity() {
 
             // Create an Intent to send data to the game_over activity
             val intent = Intent(this, GameOver::class.java)
+            val gameStateInt = GameStateToInt(gameStatus)
             intent.putExtra("player1Wins", player1Wins)
             intent.putExtra("player2Wins", player2Wins)
-            intent.putExtra("gameResult", gameStatus)
+            intent.putExtra("gameResult", gameStateInt)
 
             startActivity(intent)
 
