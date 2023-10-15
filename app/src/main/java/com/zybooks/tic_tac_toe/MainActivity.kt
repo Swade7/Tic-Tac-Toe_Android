@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("player2Wins", player2Wins)
             intent.putExtra("gameResult", gameStateInt)
 
-            startActivity(intent)
+            resultLauncher.launch(intent)
         }
     }
 
@@ -149,6 +149,13 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(GAME_STATE, game.state)
+    }
+
+    private val resultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            startGame()
+        }
     }
 
 }

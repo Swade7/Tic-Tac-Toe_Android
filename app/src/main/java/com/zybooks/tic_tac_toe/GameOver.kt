@@ -29,7 +29,7 @@ class GameOver : AppCompatActivity() {
         when(gameResult) {
             0 -> gameResultTextView.setText(R.string.error)
             1 -> gameResultTextView.setText(R.string.player_1_win)
-            2 -> gameResultTextView.setText(R.string.player_1_win)
+            2 -> gameResultTextView.setText(R.string.player_2_win)
             3 -> gameResultTextView.setText(R.string.tie)
         }
     }
