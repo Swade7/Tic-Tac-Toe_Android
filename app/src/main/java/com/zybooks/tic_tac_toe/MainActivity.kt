@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
         oColor = ContextCompat.getColor(this, R.color.blue)
         noneColor - ContextCompat.getColor(this, R.color.clear)
 
-
     }
 
     private fun startGame() {
@@ -73,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun GameStateToInt(gameState: GameState): Int {
+    private fun gameStateToInt(gameState: GameState): Int {
         return when (gameState) {
             GameState.NotOver -> 0
             GameState.Player1Win -> 1
@@ -92,6 +91,7 @@ class MainActivity : AppCompatActivity() {
             showCurrentPlayer()
         }
 
+        setButtonValues()
 
         // TODO: Launch the game_over Activity if the game is over
         val gameStatus = game.getGameStatus()
@@ -104,14 +104,12 @@ class MainActivity : AppCompatActivity() {
 
             // Create an Intent to send data to the game_over activity
             val intent = Intent(this, GameOver::class.java)
-            val gameStateInt = GameStateToInt(gameStatus)
+            val gameStateInt = gameStateToInt(gameStatus)
             intent.putExtra("player1Wins", player1Wins)
             intent.putExtra("player2Wins", player2Wins)
             intent.putExtra("gameResult", gameStateInt)
 
             startActivity(intent)
-
-
         }
     }
 

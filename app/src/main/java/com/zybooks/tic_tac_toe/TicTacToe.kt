@@ -112,7 +112,10 @@ class TicTacToe {
         if (currentPlayer == Player.X) {
             currentPlayer = Player.O
         }
-        currentPlayer = Player.X
+        else {
+            currentPlayer = Player.X
+        }
+
     }
 
     private fun setPlaceValue(row: Int, col: Int) {
