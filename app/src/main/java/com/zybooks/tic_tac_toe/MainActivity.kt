@@ -13,6 +13,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.children
 
 const val GAME_STATE = "gameState"
+const val PLAYER_1_WINS = "player1Wins"
+const val PLAYER_2_WINS = "player2Wins"
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var ticTacToeGridLayout: GridLayout
@@ -34,14 +37,18 @@ class MainActivity : AppCompatActivity() {
             startGame()
 
         } else {
-            game.state = savedInstanceState.getStringArray(GAME_STATE).toString()!!
+            game.state = savedInstanceState.getString(GAME_STATE).toString()
+
             setButtonValues()
 
             // Get the saved number of wins for each player and the current player
             player1Wins = savedInstanceState.getInt("player1Wins", 0)
             player2Wins = savedInstanceState.getInt("player2Wins", 0)
             game.setCurrentPlayer(intToPlayer(savedInstanceState.getInt("currentPlayer", 1)))
+
         }
+
+
 
         // Add the same click handler to all grid buttons
         for (gridButton in ticTacToeGridLayout.children) {
@@ -51,6 +58,9 @@ class MainActivity : AppCompatActivity() {
         xColor = ContextCompat.getColor(this, R.color.red)
         oColor = ContextCompat.getColor(this, R.color.blue)
         noneColor - ContextCompat.getColor(this, R.color.clear)
+
+        showCurrentPlayer()
+        setButtonValues()
     }
 
     // Start/reset the game
@@ -165,6 +175,8 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(GAME_STATE, game.state)
+        outState.putInt(PLAYER_1_WINS, player1Wins)
+        outState.putInt(PLAYER_2_WINS, player2Wins)
     }
 
     // Restart the game if the NEW GAME button is clicked in GameOver

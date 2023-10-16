@@ -43,15 +43,13 @@ class TicTacToe {
     var state: String
         get() {
             val boardString = StringBuilder()
-
-            var index = 0
             for (row in 0 until GRID_SIZE) {
                 for (col in 0 until GRID_SIZE) {
 
                     when (board[row][col]) {
                         Player.X -> boardString.append('X')
                         Player.O -> boardString.append('O')
-                        Player.None -> boardString.append('N')
+                        else -> boardString.append('N')
                     }
                 }
             }
@@ -71,7 +69,7 @@ class TicTacToe {
             }
         }
 
-    // Reset the board
+    // Reset the game board
     fun newGame() {
         for (row in 0 until GRID_SIZE) {
             for (col in 0 until GRID_SIZE) {
